@@ -9,11 +9,20 @@ import UIKit
 
 class PalleteViewController: UIViewController {
     
+    @IBOutlet weak var backgroundColorSwitch: UISwitch!
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var colorInfoLabel: UILabel!
+    @IBOutlet weak var palleteCollection: UICollectionView!
+    
     private let randomURL = "https://www.colourlovers.com/api/palettes/random?format=json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getRandomPallete()
+    }
+    
+    @IBAction func colorViewPressed() {
+        
     }
     
     private func getRandomPallete() {
@@ -34,6 +43,19 @@ class PalleteViewController: UIViewController {
             
         }.resume()
     }
+    
+}
+
+extension PalleteViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
     
 }
 

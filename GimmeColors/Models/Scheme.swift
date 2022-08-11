@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Scheme {
+struct Scheme: Decodable {
+    
     let mode: String?
     let count: Int?
     let colors: [Seed]?
@@ -15,37 +16,36 @@ struct Scheme {
 
 }
 
-struct Seed {
-    let hex: Hex?
-    let rgb: RGB?
+struct Seed: Decodable {
+    let hex: schemeHex?
+    let rgb: schemeRGB?
 }
 
-struct Hex {
+struct schemeHex: Decodable {
     let value: String?
     let clean: String?
 }
 
-struct Name {
+struct schemeName: Decodable {
     let value: String?
     let closestNamedHex: String?
     let exactMatchName: Bool?
     let distance: Int?
 }
 
-struct RGB {
-    let fraction: RGBFraction?
+struct schemeRGB: Decodable  {
+    let fraction: schemeRGBFraction?
     let r: Int?
     let g: Int?
     let b: Int?
     let value: String?
 }
 
-struct RGBFraction {
+struct schemeRGBFraction: Decodable {
     let r: Double?
     let g: Double?
     let b: Double?
 }
 
-// Xyz.swift
 
 

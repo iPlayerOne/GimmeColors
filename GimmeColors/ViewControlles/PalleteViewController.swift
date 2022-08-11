@@ -14,6 +14,9 @@ class PalleteViewController: UIViewController {
     @IBOutlet weak var colorInfoLabel: UILabel!
     @IBOutlet weak var palleteCollection: UICollectionView!
     
+    var color: Color?
+    var scheme: Scheme?
+    
     private let randomURL = "https://www.colourlovers.com/api/palettes/random?format=json"
     
     override func viewDidLoad() {

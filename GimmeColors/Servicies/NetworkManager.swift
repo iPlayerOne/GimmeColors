@@ -8,8 +8,8 @@
 import Foundation
 
 enum Link: String {
-    case
-    case
+    case singleURL = "https://www.thecolorapi.com/id?rgb=\(r),\(g),\(b)"
+    case schemeURL = "https://www.thecolorapi.com/scheme?rgb=\(r),\(g),\(b)"
 }
 
 class NetworkManager {

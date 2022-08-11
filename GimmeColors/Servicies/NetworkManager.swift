@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum Link: String {
+    case
+    case
+}
+
 class NetworkManager {
     static let shared = NetworkManager()
     

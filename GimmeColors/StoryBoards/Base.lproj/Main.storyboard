@@ -98,7 +98,7 @@
                         <outlet property="colorView" destination="MBh-Hl-IXP" id="TdP-Oz-QYg"/>
                         <outlet property="palleteCollection" destination="shF-nX-reg" id="0Xj-2d-Ujk"/>
                         <outlet property="palleteLayout" destination="PxS-De-hN7" id="Pt1-4v-Esw"/>
-                        <segue destination="8OT-BW-fQd" kind="presentation" identifier="toSetColorVC" id="w7f-m6-xW5"/>
+                        <segue destination="8OT-BW-fQd" kind="presentation" identifier="toSetColorVC" modalPresentationStyle="fullScreen" id="w7f-m6-xW5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -110,14 +110,14 @@
             <objects>
                 <viewController storyboardIdentifier="setColorVC" title="setColorVC" id="8OT-BW-fQd" customClass="SetColorViewController" customModule="GimmeColors" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4kT-CV-enx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8IO-zv-CBZ">
-                                <rect key="frame" x="16" y="345" width="288" height="137"/>
+                                <rect key="frame" x="16" y="352" width="288" height="142"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="SgD-ri-Aa4">
-                                        <rect key="frame" x="0.0" y="13.5" width="44" height="110"/>
+                                        <rect key="frame" x="0.0" y="16" width="44" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYU-hp-fPK">
                                                 <rect key="frame" x="0.0" y="0.0" width="44" height="18"/>
@@ -143,7 +143,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vmo-qS-XVh">
-                                        <rect key="frame" x="52" y="9.5" width="178" height="118"/>
+                                        <rect key="frame" x="52" y="12" width="178" height="118"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Cj7-FP-AfJ">
                                                 <rect key="frame" x="-2" y="0.0" width="182" height="31"/>
@@ -175,7 +175,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5xE-vS-wwY">
-                                        <rect key="frame" x="238" y="9.5" width="50" height="118"/>
+                                        <rect key="frame" x="238" y="12" width="50" height="118"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgn-6S-9dL" userLabel="red">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
@@ -200,7 +200,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fke-pt-p3M">
-                                <rect key="frame" x="64" y="123" width="192" height="192"/>
+                                <rect key="frame" x="60.5" y="123" width="199" height="199"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fke-pt-p3M" secondAttribute="height" multiplier="1:1" id="aEk-by-IN2"/>
@@ -211,17 +211,29 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snY-nH-Gjd">
+                                <rect key="frame" x="132.5" y="60" width="55.5" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="8OT-BW-fQd" eventType="touchUpInside" id="v5X-hn-nCt"/>
+                                    <segue destination="5SX-5M-OtN" kind="unwind" unwindAction="unwindTo:" id="fSh-3j-Qx7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ILl-zK-twE"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="fke-pt-p3M" firstAttribute="height" secondItem="4kT-CV-enx" secondAttribute="height" multiplier="0.35" id="3ec-yc-fqJ"/>
+                            <constraint firstItem="fke-pt-p3M" firstAttribute="top" secondItem="snY-nH-Gjd" secondAttribute="bottom" constant="32" id="J0t-Wa-Bnl"/>
                             <constraint firstItem="8IO-zv-CBZ" firstAttribute="leading" secondItem="ILl-zK-twE" secondAttribute="leading" constant="16" id="LSP-2b-bJD"/>
+                            <constraint firstItem="snY-nH-Gjd" firstAttribute="centerX" secondItem="ILl-zK-twE" secondAttribute="centerX" id="QbO-OQ-n6d"/>
                             <constraint firstItem="8IO-zv-CBZ" firstAttribute="height" secondItem="ILl-zK-twE" secondAttribute="height" multiplier="0.25" id="Qh6-uE-4td"/>
                             <constraint firstItem="ILl-zK-twE" firstAttribute="trailing" secondItem="8IO-zv-CBZ" secondAttribute="trailing" constant="16" id="Zoh-NM-29p"/>
                             <constraint firstItem="8IO-zv-CBZ" firstAttribute="top" secondItem="fke-pt-p3M" secondAttribute="bottom" constant="30" id="fwb-gt-pJC"/>
                             <constraint firstItem="fke-pt-p3M" firstAttribute="centerX" secondItem="ILl-zK-twE" secondAttribute="centerX" id="nOM-Rb-uhN"/>
                             <constraint firstItem="fke-pt-p3M" firstAttribute="top" secondItem="ILl-zK-twE" secondAttribute="top" constant="123" id="pxh-Ji-5FG"/>
+                            <constraint firstItem="snY-nH-Gjd" firstAttribute="top" secondItem="ILl-zK-twE" secondAttribute="top" constant="60" id="tis-Oy-Edp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VQD-Ho-LGK"/>
@@ -236,6 +248,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLw-qf-RHy" sceneMemberID="firstResponder"/>
+                <exit id="5SX-5M-OtN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="774" y="75"/>
         </scene>

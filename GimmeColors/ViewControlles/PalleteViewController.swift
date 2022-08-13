@@ -54,8 +54,21 @@ class PalleteViewController: UIViewController {
             guard let colorSettingsVC = segue.destination as? SetColorViewController else { return }
             
         colorSettingsVC.viewColor = colorView.backgroundColor
+        colorSettingsVC.redSlider.value = Float(red ?? 25)
+        colorSettingsVC.greenSlider.value = Float(green ?? 25)
+        colorSettingsVC.blueSlider.value = Float(blue ?? 25)
         }
 
+    @IBAction func unwindTo(_ unwindSegue: UIStoryboardSegue) {
+            guard let colorSettingsVC = unwindSegue.source as? SetColorViewController else { return }
+            red = Int(colorSettingsVC.redSlider.value)
+            green = Int(colorSettingsVC.greenSlider.value)
+            blue = Int(colorSettingsVC.blueSlider.value)
+        colorView.backgroundColor = UIColor(red: red ?? 00, green: green ?? 00, blue: blue ?? 00, a: 1)
+            getColor()
+            getScheme()
+        }
+    
     private func getRandom() {
         red = Int.random(in: 1...255)
         green = Int.random(in: 1...255)
@@ -84,7 +97,6 @@ class PalleteViewController: UIViewController {
 \(color.name?.value ?? "No data")
 Hex: \(color.hex?.value ?? "No data")
 """
-                    
                 case .failure(let error):
                     print(error)
             }
@@ -123,6 +135,8 @@ extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataS
         blue = cellColor.b
         colorView.backgroundColor = getColorFromRGB(for: cellColor)
         getColor()
+        getScheme()
+        
     }
     
     

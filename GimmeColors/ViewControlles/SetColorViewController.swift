@@ -37,6 +37,8 @@ class SetColorViewController: UIViewController {
         view.endEditing(true)
     }
 
+    @IBAction func saveButtonPressed(_ sender: Any) {
+    }
     @IBAction func rgbSliders(_ sender: UISlider) {
         switch sender {
             case redSlider:
@@ -56,7 +58,7 @@ class SetColorViewController: UIViewController {
             blue: Int(blueSlider.value),
             a: 1)
     }
-    
+
     private func setValue(for fields: UITextField...) {
         fields.forEach { field in
             switch field {

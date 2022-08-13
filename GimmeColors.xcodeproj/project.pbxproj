@@ -16,6 +16,7 @@
 		3089E5B528A2A63600215337 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3089E5B428A2A63600215337 /* Color.swift */; };
 		30F0576B28A53803009FD9BC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0576A28A53803009FD9BC /* NetworkManager.swift */; };
 		30F0576D28A549F9009FD9BC /* Scheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0576C28A549F9009FD9BC /* Scheme.swift */; };
+		30F0577028A7BD6B009FD9BC /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0576F28A7BD6B009FD9BC /* Extension + UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		3089E5B428A2A63600215337 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		30F0576A28A53803009FD9BC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		30F0576C28A549F9009FD9BC /* Scheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheme.swift; sourceTree = "<group>"; };
+		30F0576F28A7BD6B009FD9BC /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				3089E5B128A2A56F00215337 /* ViewControlles */,
 				3089E5AF28A2A4C100215337 /* StoryBoards */,
 				3089E5B328A2A5FB00215337 /* Models */,
+				30F0576E28A7BD38009FD9BC /* Extensions */,
 				3089E5B028A2A4D700215337 /* App */,
 				30F0576928A537AB009FD9BC /* Servicies */,
 				3089E5B228A2A5D800215337 /* Resources */,
@@ -122,6 +125,14 @@
 				30F0576A28A53803009FD9BC /* NetworkManager.swift */,
 			);
 			path = Servicies;
+			sourceTree = "<group>";
+		};
+		30F0576E28A7BD38009FD9BC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				30F0576F28A7BD6B009FD9BC /* Extension + UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 				30F0576D28A549F9009FD9BC /* Scheme.swift in Sources */,
 				3089E5A028A2A48B00215337 /* PalleteViewController.swift in Sources */,
 				3089E59C28A2A48B00215337 /* AppDelegate.swift in Sources */,
+				30F0577028A7BD6B009FD9BC /* Extension + UIColor.swift in Sources */,
 				30F0576B28A53803009FD9BC /* NetworkManager.swift in Sources */,
 				3089E59E28A2A48B00215337 /* SceneDelegate.swift in Sources */,
 				3089E5B528A2A63600215337 /* Color.swift in Sources */,

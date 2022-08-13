@@ -45,7 +45,14 @@ class PalleteViewController: UIViewController {
         
     }
     
-
+//    private func setColorValue() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+//        var red: CGFloat = 0
+//        var green: CGFloat = 0
+//        var blue: CGFloat = 0
+//        var alpha: CGFloat = 0
+//        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+//        return (red: red, green: green, blue: blue, alpha: alpha)
+//    }
     
     private func getColor() {
         NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: 0, g: 0, b: 99)) { [weak self] result in
@@ -80,10 +87,15 @@ extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "schemeCell", for: indexPath)
-        let cellColor = schemeColor?.colors?[indexPath.item].rgb?.value
-        
+        let cellColor = schemeColor?.colors?[indexPath.item].rgb
+//        let cellColor = schemeColor?.colors?[indexPath.item].rgb?.value?
+//            .components(separatedBy: CharacterSet.letters)
+//        let filteredColor = cellColor?.compactMap({Int($0)})
+//            .compactMap{Int($0)}
+//        let filteredColor = cellColor?.components(separatedBy: CharacterSet.letters).joined()
+//        print(filteredColor)
         print("Ячейка \(cellColor)")
-        cell.backgroundColor = .blue
+        cell.backgroundColor = UIColor(red: cellColor?.r ?? 00, green: cellColor?.g ?? 00, blue: cellColor?.b ?? 99)
         return cell
     }
     

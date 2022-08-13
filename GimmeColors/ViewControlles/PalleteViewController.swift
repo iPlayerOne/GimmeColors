@@ -54,9 +54,6 @@ class PalleteViewController: UIViewController {
             guard let colorSettingsVC = segue.destination as? SetColorViewController else { return }
             
         colorSettingsVC.viewColor = colorView.backgroundColor
-        colorSettingsVC.redSlider.value = Float(red ?? 25)
-        colorSettingsVC.greenSlider.value = Float(green ?? 25)
-        colorSettingsVC.blueSlider.value = Float(blue ?? 25)
         }
 
     @IBAction func unwindTo(_ unwindSegue: UIStoryboardSegue) {

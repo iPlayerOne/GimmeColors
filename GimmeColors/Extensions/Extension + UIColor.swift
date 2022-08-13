@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
+        
     convenience init(red: Int, green: Int, blue: Int, a: CGFloat = 1.0) {
         self.init(
             red: CGFloat(red) / 255.0,
@@ -26,5 +26,14 @@ extension UIColor {
             blue: rgb & 0xFF,
             a: a
         )
+    }
+    
+    func getColorValue() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        var red: CGFloat = 0 * 255
+        var green: CGFloat = 0 * 255
+        var blue: CGFloat = 0 * 255
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return (red: red, green: green, blue: blue, alpha: alpha)
     }
 }

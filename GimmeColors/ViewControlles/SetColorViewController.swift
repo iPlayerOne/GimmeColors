@@ -24,12 +24,12 @@ class SetColorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setColorView.backgroundColor = viewColor
-//        setValue(for: redSlider, greenSlider, blueSlider)
+        getBackgroudColor()
         setValue(for: redTextField, greenTextField, blueTextField)
         redTextField.delegate = self
         greenTextField.delegate = self
         blueTextField.delegate = self
-
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -57,6 +57,23 @@ class SetColorViewController: UIViewController {
             green: Int(greenSlider.value),
             blue: Int(blueSlider.value),
             a: 1)
+    }
+    
+    private func getBackgroudColor() {
+        redSlider.value = Float(viewColor?.getColorValue().red ?? 25)
+        greenSlider.value = Float(viewColor?.getColorValue().green ?? 25)
+        blueSlider.value = Float(viewColor?.getColorValue().blue ?? 25)
+    }
+    
+    private func setValue(for sliders: UISlider...) {
+        let color = viewColor?.getColorValue()
+        sliders.forEach { slider in
+            switch slider {
+                case redSlider:
+                    redSlider.value = Float(color?.red ?? 25)
+            }
+            
+        }
     }
 
     private func setValue(for fields: UITextField...) {

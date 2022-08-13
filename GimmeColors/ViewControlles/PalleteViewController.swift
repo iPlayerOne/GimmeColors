@@ -32,7 +32,7 @@ class PalleteViewController: UIViewController {
         palleteLayout.minimumLineSpacing = 5
         getColor()
         getScheme()
-
+        
     }
     
     @IBAction func backgoundColorSwitchPressed(_ sender: UISwitch) {
@@ -47,24 +47,24 @@ class PalleteViewController: UIViewController {
     
     @IBAction func colorViewPressed() {
         performSegue(withIdentifier: "toSetColorVC", sender: nil)
-
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard let colorSettingsVC = segue.destination as? SetColorViewController else { return }
-            
+        guard let colorSettingsVC = segue.destination as? SetColorViewController else { return }
+        
         colorSettingsVC.viewColor = colorView.backgroundColor
-        }
-
+    }
+    
     @IBAction func unwindTo(_ unwindSegue: UIStoryboardSegue) {
-            guard let colorSettingsVC = unwindSegue.source as? SetColorViewController else { return }
-            red = Int(colorSettingsVC.redSlider.value)
-            green = Int(colorSettingsVC.greenSlider.value)
-            blue = Int(colorSettingsVC.blueSlider.value)
+        guard let colorSettingsVC = unwindSegue.source as? SetColorViewController else { return }
+        red = Int(colorSettingsVC.redSlider.value)
+        green = Int(colorSettingsVC.greenSlider.value)
+        blue = Int(colorSettingsVC.blueSlider.value)
         colorView.backgroundColor = UIColor(red: red ?? 00, green: green ?? 00, blue: blue ?? 00, a: 1)
-            getColor()
-            getScheme()
-        }
+        getColor()
+        getScheme()
+    }
     
     private func getRandom() {
         red = Int.random(in: 1...255)
@@ -73,12 +73,12 @@ class PalleteViewController: UIViewController {
     }
     
     private func getColorFromRGB(for sender: colorRGB) -> UIColor {
-            guard let red = sender.r, let green = sender.g, let blue = sender.b else { return UIColor() }
-            return UIColor(red: red, green: green, blue: blue, a: 1)
-            
-        }
-
-
+        guard let red = sender.r, let green = sender.g, let blue = sender.b else { return UIColor() }
+        return UIColor(red: red, green: green, blue: blue, a: 1)
+        
+    }
+    
+    
     
     private func getColor() {
         NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: red ?? 00, g: green ?? 00, b: blue ?? 99)) { [weak self] result in
@@ -88,6 +88,7 @@ class PalleteViewController: UIViewController {
                     self?.singleColor = color
                     self?.palleteCollection.reloadData()
                     guard let rgb = color.rgb else { return }
+                    self?.backgroundColorSwitch.onTintColor = self?.getColorFromRGB(for: rgb)
                     self?.colorView.backgroundColor = self?.getColorFromRGB(for: rgb)
                     
                     self?.colorInfoLabel.text = """
@@ -112,7 +113,7 @@ Hex: \(color.hex?.value ?? "No data")
         
     }
 }
-    
+
 extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         schemeColor?.colors?.count ?? 1

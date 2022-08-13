@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBh-Hl-IXP" customClass="UIControl">
-                                <rect key="frame" x="60.5" y="123" width="199" height="199"/>
+                                <rect key="frame" x="137" y="123" width="46" height="46"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="We4-bF-fgy">
-                                        <rect key="frame" x="0.0" y="134" width="199" height="24"/>
+                                        <rect key="frame" x="0.0" y="-19" width="46" height="24"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,7 +47,7 @@
                                 </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="shF-nX-reg">
-                                <rect key="frame" x="0.0" y="469.5" width="320" height="78.5"/>
+                                <rect key="frame" x="0.0" y="316.5" width="320" height="54"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PxS-De-hN7">
                                     <size key="itemSize" width="128" height="128"/>
@@ -57,7 +57,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="schemeCell" id="0vx-L1-uit">
-                                        <rect key="frame" x="0.0" y="1" width="73" height="77"/>
+                                        <rect key="frame" x="0.0" y="-11.5" width="73" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="4Z1-tn-HqV">
                                             <rect key="frame" x="0.0" y="0.0" width="73" height="77"/>
@@ -82,6 +82,7 @@
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstItem="MBh-Hl-IXP" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.35" id="0Rb-dv-Yg8"/>
+                            <constraint firstItem="shF-nX-reg" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.138204" id="Omm-9B-gNo"/>
                             <constraint firstItem="shF-nX-reg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WuM-z1-2em"/>
                             <constraint firstItem="MBh-Hl-IXP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="123" id="e3j-Uo-W2C"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="shF-nX-reg" secondAttribute="bottom" constant="20" id="gCj-zH-oHp"/>

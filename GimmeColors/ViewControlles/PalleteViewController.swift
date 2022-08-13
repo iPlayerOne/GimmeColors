@@ -41,18 +41,33 @@ class PalleteViewController: UIViewController {
         print("willappear \(schemeColor?.colors?.count)")
     }
     
-    @IBAction func colorViewPressed() {
-        
+    @IBAction func backgoundColorSwitchPressed(_ sender: UISwitch) {
+        if sender.isOn {
+            view.backgroundColor = .black
+            colorInfoLabel.textColor = .white
+        } else {
+            view.backgroundColor = .systemGray5
+            colorInfoLabel.textColor = .black
+        }
     }
     
-//    private func setColorValue() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-//        var red: CGFloat = 0
-//        var green: CGFloat = 0
-//        var blue: CGFloat = 0
-//        var alpha: CGFloat = 0
-//        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-//        return (red: red, green: green, blue: blue, alpha: alpha)
-//    }
+    @IBAction func colorViewPressed() {
+        performSegue(withIdentifier: "toSetColorVC", sender: nil)
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            guard let colorSettingsVC = segue.destination as? SetColorViewController else { return }
+            
+        colorSettingsVC.viewColor = colorView.backgroundColor
+        }
+
+    
+    private func getColorFromRGB(for color: Color) -> UIColor {
+            guard let rgb = color.rgb, let red = rgb.r, let green = rgb.g, let blue = rgb.b else { return UIColor() }
+            return UIColor(red: red, green: green, blue: blue, a: 1)
+        }
+
     
     private func getColor() {
         NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: 0, g: 0, b: 99)) { [weak self] result in
@@ -60,6 +75,10 @@ class PalleteViewController: UIViewController {
                 case .success(let color):
                     print(color)
                     self?.singleColor = color
+                    self?.palleteCollection.reloadData()
+                    self?.colorView.backgroundColor = self?.getColorFromRGB(for: color)
+                    self?.colorInfoLabel.text = "\(color.name?.value ?? "No data") \nHex: \(color.hex?.value ?? "No data")"
+                    
                 case .failure(let error):
                     print(error)
             }
@@ -67,7 +86,7 @@ class PalleteViewController: UIViewController {
     }
     
     private func getScheme() {
-        NetworkManager.shared.fetch(Scheme.self, from: NetworkManager.shared.getURLString(for: .schemeURL, r: 0, g: 0, b: 99)) { [weak self] result in
+        NetworkManager.shared.fetch(Scheme.self, from: NetworkManager.shared.getURLString(for: .schemeURL, r: 44, g: 13, b: 99)) { [weak self] result in
             switch result {
                 case .success(let scheme):
                     print(scheme)
@@ -80,7 +99,7 @@ class PalleteViewController: UIViewController {
     }
 }
     
-extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         schemeColor?.colors?.count ?? 1
     }
@@ -88,14 +107,10 @@ extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "schemeCell", for: indexPath)
         let cellColor = schemeColor?.colors?[indexPath.item].rgb
-//        let cellColor = schemeColor?.colors?[indexPath.item].rgb?.value?
-//            .components(separatedBy: CharacterSet.letters)
-//        let filteredColor = cellColor?.compactMap({Int($0)})
-//            .compactMap{Int($0)}
-//        let filteredColor = cellColor?.components(separatedBy: CharacterSet.letters).joined()
-//        print(filteredColor)
+
+
         print("Ячейка \(cellColor)")
-        cell.backgroundColor = UIColor(red: cellColor?.r ?? 00, green: cellColor?.g ?? 00, blue: cellColor?.b ?? 99)
+        cell.backgroundColor = UIColor(red: cellColor?.r ?? 0, green: cellColor?.g ?? 0, blue: cellColor?.b ?? 0, a: 1)
         return cell
     }
     

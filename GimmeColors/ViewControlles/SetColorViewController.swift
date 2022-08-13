@@ -25,6 +25,7 @@ class SetColorViewController: UIViewController {
         super.viewDidLoad()
         setColorView.backgroundColor = viewColor
         getBackgroudColor()
+        setValue(for: redSlider, greenSlider, blueSlider)
         setValue(for: redTextField, greenTextField, blueTextField)
         redTextField.delegate = self
         greenTextField.delegate = self
@@ -39,6 +40,7 @@ class SetColorViewController: UIViewController {
 
     @IBAction func saveButtonPressed(_ sender: Any) {
     }
+    
     @IBAction func rgbSliders(_ sender: UISlider) {
         switch sender {
             case redSlider:
@@ -71,6 +73,10 @@ class SetColorViewController: UIViewController {
             switch slider {
                 case redSlider:
                     redSlider.value = Float(color?.red ?? 25)
+                case greenSlider:
+                    greenSlider.value = Float(color?.green ?? 25)
+                default:
+                    blueSlider.value = Float(color?.blue ?? 25)
             }
             
         }

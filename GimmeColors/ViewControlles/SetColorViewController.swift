@@ -23,6 +23,12 @@ class SetColorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setColorView.backgroundColor = viewColor
+//        setValue(for: redSlider, greenSlider, blueSlider)
+        setValue(for: redTextField, greenTextField, blueTextField)
+        redTextField.delegate = self
+        greenTextField.delegate = self
+        blueTextField.delegate = self
 
     }
     
@@ -66,7 +72,7 @@ class SetColorViewController: UIViewController {
     }
     
     private func string(from slider: UISlider) -> String {
-        String(format: "%.2f", slider.value)
+        String(format: "%.0f", slider.value)
     }
     
     @objc private func didTapDone() {

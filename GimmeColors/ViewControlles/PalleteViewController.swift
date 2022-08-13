@@ -13,6 +13,7 @@ class PalleteViewController: UIViewController {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var colorInfoLabel: UILabel!
     @IBOutlet weak var palleteCollection: UICollectionView!
+    @IBOutlet weak var palleteLayout: UICollectionViewFlowLayout!
     
     private var singleColor: Color?
     private var schemeColor: Scheme? {
@@ -21,24 +22,17 @@ class PalleteViewController: UIViewController {
         }
     }
     
+    private var red: Int?
+    private var green: Int?
+    private var blue: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getRandom()
+        palleteLayout.minimumLineSpacing = 5
         getColor()
-        print("didLoad\(singleColor)")
         getScheme()
-        palleteCollection.reloadData()
-        print("didload \(schemeColor)")
-        print("didload \(schemeColor?.colors?.count)")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getColor()
-        print("willAppear\(singleColor)")
-        getScheme()
-        palleteCollection.reloadData()
-        print(" willappear \(schemeColor)")
-        print("willappear \(schemeColor?.colors?.count)")
+
     }
     
     @IBAction func backgoundColorSwitchPressed(_ sender: UISwitch) {
@@ -62,22 +56,34 @@ class PalleteViewController: UIViewController {
         colorSettingsVC.viewColor = colorView.backgroundColor
         }
 
+    private func getRandom() {
+        red = Int.random(in: 1...255)
+        green = Int.random(in: 1...255)
+        blue = Int.random(in: 1...255)
+    }
     
-    private func getColorFromRGB(for color: Color) -> UIColor {
-            guard let rgb = color.rgb, let red = rgb.r, let green = rgb.g, let blue = rgb.b else { return UIColor() }
+    private func getColorFromRGB(for sender: colorRGB) -> UIColor {
+            guard let red = sender.r, let green = sender.g, let blue = sender.b else { return UIColor() }
             return UIColor(red: red, green: green, blue: blue, a: 1)
+            
         }
+
 
     
     private func getColor() {
-        NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: 0, g: 0, b: 99)) { [weak self] result in
+        NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: red ?? 00, g: green ?? 00, b: blue ?? 99)) { [weak self] result in
             switch result {
                 case .success(let color):
                     print(color)
                     self?.singleColor = color
                     self?.palleteCollection.reloadData()
-                    self?.colorView.backgroundColor = self?.getColorFromRGB(for: color)
-                    self?.colorInfoLabel.text = "\(color.name?.value ?? "No data") \nHex: \(color.hex?.value ?? "No data")"
+                    guard let rgb = color.rgb else { return }
+                    self?.colorView.backgroundColor = self?.getColorFromRGB(for: rgb)
+                    
+                    self?.colorInfoLabel.text = """
+\(color.name?.value ?? "No data")
+Hex: \(color.hex?.value ?? "No data")
+"""
                     
                 case .failure(let error):
                     print(error)
@@ -86,10 +92,9 @@ class PalleteViewController: UIViewController {
     }
     
     private func getScheme() {
-        NetworkManager.shared.fetch(Scheme.self, from: NetworkManager.shared.getURLString(for: .schemeURL, r: 44, g: 13, b: 99)) { [weak self] result in
+        NetworkManager.shared.fetch(Scheme.self, from: NetworkManager.shared.getURLString(for: .schemeURL, r: red ?? 00 , g: green ?? 00, b: blue ?? 00)) { [weak self] result in
             switch result {
                 case .success(let scheme):
-                    print(scheme)
                     self?.schemeColor = scheme
                 case .failure(let error):
                     print(error)
@@ -107,15 +112,17 @@ extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "schemeCell", for: indexPath)
         let cellColor = schemeColor?.colors?[indexPath.item].rgb
-
-
-        print("Ячейка \(cellColor)")
         cell.backgroundColor = UIColor(red: cellColor?.r ?? 0, green: cellColor?.g ?? 0, blue: cellColor?.b ?? 0, a: 1)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Дид селект \(schemeColor)")
+        guard let cellColor = schemeColor?.colors?[indexPath.row].rgb as? colorRGB else { return }
+        red = cellColor.r
+        green = cellColor.g
+        blue = cellColor.b
+        colorView.backgroundColor = getColorFromRGB(for: cellColor)
+        getColor()
     }
     
     

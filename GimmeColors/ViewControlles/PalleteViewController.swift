@@ -137,5 +137,4 @@ extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataS
         
     }
     
-    
 }

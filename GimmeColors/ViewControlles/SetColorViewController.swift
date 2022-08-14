@@ -8,7 +8,7 @@
 import UIKit
 
 class SetColorViewController: UIViewController {
-
+    
     @IBOutlet weak var setColorView: UIView!
     
     @IBOutlet weak var redSlider: UISlider!
@@ -37,7 +37,7 @@ class SetColorViewController: UIViewController {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
-
+    
     @IBAction func saveButtonPressed(_ sender: Any) {
     }
     
@@ -81,7 +81,7 @@ class SetColorViewController: UIViewController {
             
         }
     }
-
+    
     private func setValue(for fields: UITextField...) {
         fields.forEach { field in
             switch field {
@@ -103,7 +103,7 @@ class SetColorViewController: UIViewController {
     @objc private func didTapDone() {
         view.endEditing(true)
     }
-
+    
 }
 
 extension SetColorViewController: UITextFieldDelegate {

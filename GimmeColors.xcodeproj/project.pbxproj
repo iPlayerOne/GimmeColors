@@ -17,6 +17,7 @@
 		30F0577028A7BD6B009FD9BC /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0576F28A7BD6B009FD9BC /* Extension + UIColor.swift */; };
 		30F0577228A7E85D009FD9BC /* SetColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0577128A7E85D009FD9BC /* SetColorViewController.swift */; };
 		30F0577428A825BB009FD9BC /* MergedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0577328A825BB009FD9BC /* MergedModel.swift */; };
+		30F1EAFB28AAC6CF003A7F8F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 30F1EAFA28AAC6CF003A7F8F /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F1EAFB28AAC6CF003A7F8F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +153,9 @@
 			dependencies = (
 			);
 			name = GimmeColors;
+			packageProductDependencies = (
+				30F1EAFA28AAC6CF003A7F8F /* Alamofire */,
+			);
 			productName = GimmeColors;
 			productReference = 3089E59828A2A48B00215337 /* GimmeColors.app */;
 			productType = "com.apple.product-type.application";
@@ -179,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 3089E58F28A2A48B00215337;
+			packageReferences = (
+				30F1EAF928AAC6CF003A7F8F /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 3089E59928A2A48B00215337 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -430,6 +438,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		30F1EAF928AAC6CF003A7F8F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		30F1EAFA28AAC6CF003A7F8F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30F1EAF928AAC6CF003A7F8F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3089E59028A2A48B00215337 /* Project object */;
 }

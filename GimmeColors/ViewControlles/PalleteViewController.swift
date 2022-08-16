@@ -78,40 +78,66 @@ class PalleteViewController: UIViewController {
         
     }
     
-    
-    
     private func getColor() {
-        NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: red ?? 00, g: green ?? 00, b: blue ?? 99)) { [weak self] result in
+        NetworkManager.shared.fetchColor(from: NetworkManager.shared.getURLString(for: .singleURL, r: red ?? 00 , g: green ?? 00, b: blue ?? 99)) { [weak self]
+            result in
             switch result {
                 case .success(let color):
                     print(color)
                     self?.singleColor = color
+                    print(self?.singleColor ?? "Ничего не вышло")
                     self?.palleteCollection.reloadData()
-                    guard let rgb = color.rgb else { return }
-                    self?.backgroundColorSwitch.onTintColor = self?.getColorFromRGB(for: rgb)
-                    self?.colorView.backgroundColor = self?.getColorFromRGB(for: rgb)
-                    
-                    self?.colorInfoLabel.text = """
-\(color.name?.value ?? "No data")
-Hex: \(color.hex?.value ?? "No data")
-"""
                 case .failure(let error):
-                    print(error)
+                    print(error.localizedDescription)
             }
         }
     }
     
     private func getScheme() {
-        NetworkManager.shared.fetch(Scheme.self, from: NetworkManager.shared.getURLString(for: .schemeURL, r: red ?? 00 , g: green ?? 00, b: blue ?? 00)) { [weak self] result in
+        NetworkManager.shared.fetchScheme(from: NetworkManager.shared.getURLString(for: .schemeURL, r: red ?? 00, g: green ?? 00, b: blue ?? 99)) {[weak self]
+            result in
             switch result {
                 case .success(let scheme):
                     self?.schemeColor = scheme
                 case .failure(let error):
-                    print(error)
+                    print(error.localizedDescription)
             }
         }
-        
     }
+    
+    
+//    private func getColor() {
+//        NetworkManager.shared.fetch(Color.self, from: NetworkManager.shared.getURLString(for: .singleURL, r: red ?? 00, g: green ?? 00, b: blue ?? 99)) { [weak self] result in
+//            switch result {
+//                case .success(let color):
+//                    print(color)
+//                    self?.singleColor = color
+//                    self?.palleteCollection.reloadData()
+//                    guard let rgb = color.rgb else { return }
+//                    self?.backgroundColorSwitch.onTintColor = self?.getColorFromRGB(for: rgb)
+//                    self?.colorView.backgroundColor = self?.getColorFromRGB(for: rgb)
+//
+//                    self?.colorInfoLabel.text = """
+//\(color.name?.value ?? "No data")
+//Hex: \(color.hex?.value ?? "No data")
+//"""
+//                case .failure(let error):
+//                    print(error)
+//            }
+//        }
+//    }
+    
+//    private func getScheme() {
+//        NetworkManager.shared.fetch(Scheme.self, from: NetworkManager.shared.getURLString(for: .schemeURL, r: red ?? 00 , g: green ?? 00, b: blue ?? 00)) { [weak self] result in
+//            switch result {
+//                case .success(let scheme):
+//                    self?.schemeColor = scheme
+//                case .failure(let error):
+//                    print(error)
+//            }
+//        }
+//
+//    }
 }
 
 extension PalleteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

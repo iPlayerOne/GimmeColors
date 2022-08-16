@@ -26,17 +26,17 @@ struct Color: Decodable {
     
 
             
-//    static func getSingleColor(from value: Any) -> Color {
-//        guard let colorData = value as? [String:Any] else { return Color.init(single: [:]) }
-//        if let hexValue = colorData["hex"] as? colorHex {
-//            for value in hexValue {
-//                return value
-//            }
-//        }
-//
-//        return
-//
-//    }
+    static func getSingleColor(from value: Any) -> Color {
+        guard let colorData = value as? [String:Any] else { return Color.init(single: [:]) }
+        let colorModel = Color.init(
+            hex: colorData["hex"] as? colorHex ?? colorHex.init(value: "", clean: ""),
+            rgb: colorData["rgb"] as? colorRGB ?? colorRGB.init(r: 001, g: 011, b: 222, value: ""),
+            name: colorData["name"] as? colorName ?? colorName.init(value: "", closestNamedHex: "", exactMatchName: false, distance: 0)
+        )
+        return colorModel
+
+        
+    }
 }
 
 struct Scheme: Decodable {
